@@ -4,4 +4,4 @@
 
 ## 更新日志
 
-[更新日志]()
+[更新日志](https://github.com/ct-adc/jdpicker/blob/master/CHANGELOG.md)
