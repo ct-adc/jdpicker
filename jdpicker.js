@@ -263,6 +263,7 @@ jdPicker = (function ($) {
             $(".data_ui_btn_clear", obj).click(function () {
                 that.input.val("");
 				that.hide();
+                that.changeInput("");
             });
             $(".data_ui_btn_close", obj).click(function () {
                 that.hide();
@@ -532,14 +533,13 @@ jdPicker = (function ($) {
                 if (this.timeShow == 1) {
                     dateString = this.input.val().replace(/\s{1}\d{2}:\d{2}[:\d{2}]*/, "");
                 }
-
             }
             date = dateString;
             if (!this.isNewDateAllowed(this.stringToDate(dateString))) {
                 this.show_error(this.error_out_of_range);
                 return;
             }
-            if (this.timeShow) {
+            if (dateString!=="" && this.timeShow) {
                 if (curr === 1) {
                     dateString = dateString + " " + this.timeHour(1);
                 } else {
