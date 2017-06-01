@@ -1,12 +1,4 @@
-/*ui jdPicker 1.1*/
-(function (w) {
-		// var head = w.getElementsByTagName('head')[0],
-		// 	link = w.createElement('link');
-
-		// link.href = 'http://static.uc108.com/common/ui/jdpicker/1.0/jdpicker.css';
-		// link.rel = 'stylesheet';
-		// head.insertBefore(link, head.firstChild);
-})(document);
+/*ui jdPicker 2.0.0*/
 jdPicker = (function ($) {
 
     function jdPicker(el, opts) {
@@ -38,8 +30,8 @@ jdPicker = (function ($) {
         week_label: "周",
         date_min: "",
         date_max: "",
-        date_format: "YYYY/mm/dd",
-        time_format: "hh:mm:ss",
+        date_format: "yyyy/MM/dd",
+        time_format: "HH:mm:ss",
         timeShow: 0,
         timeBtn: 1,
         change: null
@@ -81,43 +73,43 @@ jdPicker = (function ($) {
             }
 
             switch (this.date_format) {
-                case "dd/mm/YYYY":
+                case "dd/MM/yyyy":
                     this.reg = new RegExp(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
                     this.date_decode = "new Date(matches[3], parseInt(matches[2]-1), matches[1]);";
                     this.date_encode = 'this.strpad(date.getDate()) + "/" + this.strpad(date.getMonth()+1) + "/" + date.getFullYear();';
                     this.date_encode_s = 'this.strpad(date.getDate()) + "/" + this.strpad(date.getMonth()+1)';
                     break;
-                case "FF dd YYYY":
+                case "FF dd yyyy":
                     this.reg = new RegExp(/^([a-zA-Z]+) (\d{1,2}) (\d{4})$/);
                     this.date_decode = "new Date(matches[3], this.indexFor(this.month_names, matches[1]), matches[2]);";
                     this.date_encode = 'this.month_names[date.getMonth()] + " " + this.strpad(date.getDate()) + " " + date.getFullYear();';
                     this.date_encode_s = 'this.month_names[date.getMonth()] + " " + this.strpad(date.getDate());';
                     break;
-                case "dd MM YYYY":
+                case "dd MM yyyy":
                     this.reg = new RegExp(/^(\d{1,2}) ([a-zA-Z]{3}) (\d{4})$/);
                     this.date_decode = "new Date(matches[3], this.indexFor(this.short_month_names, matches[2]), matches[1]);";
                     this.date_encode = 'this.strpad(date.getDate()) + " " + this.short_month_names[date.getMonth()] + " " + date.getFullYear();';
                     this.date_encode_s = 'this.strpad(date.getDate()) + " " + this.short_month_names[date.getMonth()];';
                     break;
-                case "MM dd YYYY":
+                case "MM dd yyyy":
                     this.reg = new RegExp(/^([\u4E00-\uFA29]{2,4}) (\d{1,2}) (\d{4})$/);
                     this.date_decode = "new Date(matches[3], this.indexFor(this.short_month_names, matches[1]), matches[2]);";
                     this.date_encode = 'this.short_month_names[date.getMonth()] + " " + this.strpad(date.getDate()) + " " + date.getFullYear();';
                     this.date_encode_s = 'this.short_month_names[date.getMonth()] + " " + this.strpad(date.getDate());';
                     break;
-                case "dd FF YYYY":
+                case "dd FF yyyy":
                     this.reg = new RegExp(/^(\d{1,2}) ([a-zA-Z]+) (\d{4})$/);
                     this.date_decode = "new Date(matches[3], this.indexFor(this.month_names, matches[2]), matches[1]);";
                     this.date_encode = 'this.strpad(date.getDate()) + " " + this.month_names[date.getMonth()] + " " + date.getFullYear();';
                     this.date_encode_s = 'this.strpad(date.getDate()) + " " + this.month_names[date.getMonth()];';
                     break;
-                case "YYYY-mm-dd":
+                case "yyyy-MM-dd":
                     this.reg = new RegExp(/^(\d{4})\-(\d{1,2})\-(\d{1,2})$/);
                     this.date_decode = "new Date(matches[1], parseInt(matches[2]-1), matches[3]);";
                     this.date_encode = 'date.getFullYear() + "-" + this.strpad(date.getMonth()+1) + "-" + this.strpad(date.getDate());';
                     this.date_encode_s = 'this.strpad(date.getMonth()+1) + "-" + this.strpad(date.getDate());';
                     break;
-                case "YYYY/mm/dd":
+                case "yyyy/MM/dd":
                 default:
                     this.reg = new RegExp(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);
                     this.date_decode = "new Date(matches[1], parseInt(matches[2]-1), matches[3]);";
@@ -125,18 +117,6 @@ jdPicker = (function ($) {
                     this.date_encode_s = 'this.strpad(date.getMonth()+1) + "/" + this.strpad(date.getDate());';
                     break;
             }
-            /*var matches;
-             if (this.date_max != "" && this.date_max.match(this.reg)) {
-             matches = this.date_max.match(this.reg);
-             this.date_max = eval(this.date_decode);
-             } else
-             this.date_max = "";
-
-             if (this.date_min != "" && this.date_min.match(this.reg)) {
-             matches = this.date_min.match(this.reg);
-             this.date_min = eval(this.date_decode);
-             } else
-             this.date_min = "";*/
             this.setDateMax(this.date_max);
             this.setDateMin(this.date_min);
             var $monthWrap = $('<p class="month-wrap">' +
@@ -226,18 +206,6 @@ jdPicker = (function ($) {
             if (this.timeBtn === 1) {
                 this.timeBtnBind(this.datepicker);
             }
-            // if ($.browser.msie && $.browser.version < 7) {
-
-            //     this.ieframe = $('<iframe class="datepicker-ieframe" frameborder="0" src="#"></iframe>').insertBefore(this.datepicker);
-            //     this.rootLayers = this.rootLayers.add(this.ieframe);
-
-            //     $(".button", header).mouseover(function () {
-            //         $(this).addClass("hover");
-            //     });
-            //     $(".button", header).mouseout(function () {
-            //         $(this).removeClass("hover");
-            //     });
-            // }
 
             if (this.timeShow === 1 && this.select_week == 0) {
                 this.timeHourBind(this.datepicker);
@@ -285,7 +253,7 @@ jdPicker = (function ($) {
             }
 
             timeTemp = '<div class="data_time_hour time_item"><span>00</span> 时</div><div class="data_time_minute time_item"><span>00</span> 分</div>';
-            if (this.time_format == "hh:mm:ss") {
+            if (this.time_format == "HH:mm:ss") {
                 timeTemp += '<div class="data_time_second time_item"><span>00</span> 秒</div>';
             }
             var timeTemp = '<div class="date-time"><div class="til">时间：</div>' + timeTemp + '<div class="select_item select_item_hour">' + hourItem + '</div><div class="select_item select_item_mintue">' + mintueItem + '</div><div class="select_item select_item_second">' + secondItem + '</div></div>';
@@ -490,7 +458,7 @@ jdPicker = (function ($) {
             th = this.datepicker.find(".data_time_hour span").html();
             tm = this.datepicker.find(".data_time_minute span").html();
             ts = this.datepicker.find(".data_time_second span").html();
-            if (this.time_format == 'hh:mm:ss') {
+            if (this.time_format == 'HH:mm:ss') {
                 if (curr === 1) {
                     timeTemp = h + ":" + m + ":" + s;
                     if (this.time_start) {
