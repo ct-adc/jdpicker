@@ -200,7 +200,7 @@ jdPicker = (function ($) {
             if (this.timeBtn === 1 && this.select_week == 0) {
                 tableShell += '<div class="curr_time"><button class="data_ui_btn data_ui_btn_now" type="button">现在时间</button><button class="data_ui_btn data_ui_btn_clear" type="button">清空</button><button class="data_ui_btn data_ui_btn_close" type="button">关闭</button></div>';
             }
-            var style = (this.input.context.type == "hidden") ? ' style="display:block; position:static; margin:0 auto"' : '';
+            var style = (typeof this.input.context !== 'undefined' && typeof this.input.context.type === "hidden") ? ' style="display:block; position:static; margin:0 auto"' : '';
 
             this.datepicker = this.rootLayers = $('<div class="datepicker" ' + style + '></div>').append(header, tableShell).insertAfter(this.input);
             if (this.timeBtn === 1) {
@@ -523,7 +523,7 @@ jdPicker = (function ($) {
             } else {
                 $('td[date="' + date + '"]', this.tbody).addClass("selected");
             }
-            if (this.input.context.type != "hidden" && !(this.timeShow === 1 && this.select_week == 0)) {
+            if (typeof this.input.context==='undefined' || (this.input.context.type != "hidden" && !(this.timeShow === 1 && this.select_week == 0))) {
                 this.hide();
             }
             if ($.isFunction(_this.change)) {
@@ -545,7 +545,7 @@ jdPicker = (function ($) {
         },
 
         hide: function () {
-            if (this.input.context.type != "hidden") {
+            if (typeof this.input.context==='undefined' || this.input.context.type != "hidden") {
                 this.input.removeAttr('readonly');
                 this.rootLayers.hide();
                 $([window, document.body]).unbind("click", this.hideIfClickOutside);
