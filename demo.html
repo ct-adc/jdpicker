@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Datepicker</title>
+	<link rel="stylesheet" href="http://static.tcy365.com/cdn/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://static.tcy365.com/cdn/bootstrap/3.3.5/css/theme.css">
+    <link rel="stylesheet" href="jdpicker.css">
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 10px;">
+    <div class="well well-sm clearfix">
+        <form action="javascript:;" class="form-horizontal">
+            <div class="row">
+                <div class="col-lg-11 col-sm-11 text-nowrap">
+                    <div class="col-lg-3 col-sm-4">
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-lg-2 col-sm-2">开始时间</label>
+                            <div class="col-lg-10 col-sm-10">
+                                <input type="text" placeholder="" id="test1" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-4">
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-lg-2 col-sm-2">结束时间</label>
+                            <div class="col-lg-10 col-sm-10">
+                                <input type="text" placeholder="" id="test2" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-4">
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-lg-2 col-sm-2">选择周</label>
+                            <div class="col-lg-10 col-sm-10">
+                                <input type="text" placeholder="" id="test3" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-4">
+                        <div class="form-group form-group-sm">
+                            <label class="control-label col-lg-2 col-sm-2">选择日期</label>
+                            <div class="col-lg-10 col-sm-10">
+                                <input type="text" placeholder="" id="test4" class="form-control jdpicker">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-1 col-sm-1 text-right">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-sm btn-primary" ms-click="search">
+                            <i class="glyphicon glyphicon-search"></i>
+                            搜索
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="http://static.tcy365.com/cdn/jquery/1.11.1/jquery.js"></script>
+<script src="http://static.tcy365.com/cdn/require/2.1.22/require.js" ></script>
+<script>
+require(['jdpicker'], function () {
+    $('#test1').jdPicker({
+    	date_format: "YYYY-mm-dd",
+    	time_start: "11:00:00",
+    	timeShow: 1,
+    	timeBtn: 1,				
+    	change:function(){
+            var t1 = this.input.val(),
+                t2 = $('#test2').val();
+
+            if (t1 > t2) {
+                time2.setDateValue(t1);
+    			time2.setDateMin(t1.split(' ')[0]);
+    			time2.reBuild();
+            }
+    	}
+    });
+
+    var time2 = $('#test2').jdPicker({
+    		date_format: "YYYY-mm-dd",
+    		time_start: "11:00:00",
+    		timeShow: 1,
+    		timeBtn: 1
+    	});
+
+    $('#test3').jdPicker({
+    	date_format: "dd/mm/YYYY",
+    	week_label: "周",
+    	select_week: 1,
+    	show_week: 1,
+    	date_min: "19/05/2010",
+    	date_max: "21/12/2012"
+    });
+});
+</script>
+</body>
+</html>
