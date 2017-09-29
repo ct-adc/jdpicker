@@ -1,5 +1,9 @@
 ## 更新日志
 
+### 2.0.2
+
+- 修复 弹出框的位置根据input框和window大小做适应
+
 ### 2.0.1
 
 - 修复 this.input.context为undefined时的容错(在codePen中使用时会出错)

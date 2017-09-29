@@ -635,14 +635,24 @@ jdPicker = (function ($) {
 
         setPosition: function () {
             var offset = this.input.offset();
-            /*this.rootLayers.css({
-             top: offset.top + this.input.outerHeight(),
-             left: offset.left
-             });*/
-            this.rootLayers.css({
-                top: this.input.outerHeight(),
-                left: 0
-            });
+            //this.rootLayers.css({
+            //     top: offset.top + this.input.outerHeight(),
+            //     left: offset.left
+            // });
+            var windowWidth=$(window).outerWidth();
+            if(offset.left>windowWidth-offset.left){
+                this.rootLayers.css({
+                    top: this.input.outerHeight(),
+                    left:'initial',
+                    right: 0
+                }).addClass('right');
+            }else{
+                this.rootLayers.css({
+                    top: this.input.outerHeight(),
+                    right:'initial',
+                    left: 0
+                }).removeClass('right');
+            }
             if (this.ieframe) {
                 this.ieframe.css({
                     width: this.datepicker.outerWidth(),
