@@ -34,7 +34,8 @@ jdPicker = (function ($) {
         time_format: "HH:mm:ss",
         timeShow: 0,
         timeBtn: 1,
-        change: null
+        change: null,
+        close_btn_text: '关闭'
     };
     jdPicker.prototype = {
         //设置最小日期
@@ -198,7 +199,7 @@ jdPicker = (function ($) {
                 //tableShell += '<div class="curr_time"><button class="data_ui_btn data_ui_btn_now" type="button">现在时间</button><button class="data_ui_btn data_ui_btn_clear" type="button">清空</button><button class="data_ui_btn data_ui_btn_close" type="button">关闭</button></div>';
             }
             if (this.timeBtn === 1 && this.select_week == 0) {
-                tableShell += '<div class="curr_time"><button class="data_ui_btn data_ui_btn_now" type="button">现在时间</button><button class="data_ui_btn data_ui_btn_clear" type="button">清空</button><button class="data_ui_btn data_ui_btn_close" type="button">关闭</button></div>';
+                tableShell += '<div class="curr_time"><button class="data_ui_btn data_ui_btn_now" type="button">现在时间</button><button class="data_ui_btn data_ui_btn_clear" type="button">清空</button><button class="data_ui_btn data_ui_btn_close" type="button">'+this.close_btn_text+'</button></div>';
             }
             var style = (typeof this.input.context !== 'undefined' && typeof this.input.context.type === "hidden") ? ' style="display:block; position:static; margin:0 auto"' : '';
 
