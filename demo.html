@@ -9,54 +9,45 @@
 </head>
 <body>
 <div class="container-fluid" style="margin-top: 10px;">
-    <div class="well well-sm clearfix">
-        <form action="javascript:;" class="form-horizontal">
-            <div class="row">
-                <div class="col-lg-11 col-sm-11 text-nowrap">
-                    <div class="col-lg-3 col-sm-4">
-                        <div class="form-group form-group-sm">
-                            <label class="control-label col-lg-2 col-sm-2">开始时间</label>
-                            <div class="col-lg-10 col-sm-10">
-                                <input type="text" placeholder="" id="test1" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-4">
-                        <div class="form-group form-group-sm">
-                            <label class="control-label col-lg-2 col-sm-2">结束时间</label>
-                            <div class="col-lg-10 col-sm-10">
-                                <input type="text" placeholder="" id="test2" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-4">
-                        <div class="form-group form-group-sm">
-                            <label class="control-label col-lg-2 col-sm-2">选择周</label>
-                            <div class="col-lg-10 col-sm-10">
-                                <input type="text" placeholder="" id="test3" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-4">
-                        <div class="form-group form-group-sm">
-                            <label class="control-label col-lg-2 col-sm-2">选择日期</label>
-                            <div class="col-lg-10 col-sm-10">
-                                <input type="text" placeholder="" id="test4" class="form-control jdpicker">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-1 col-sm-1 text-right">
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-sm btn-primary" ms-click="search">
-                            <i class="glyphicon glyphicon-search"></i>
-                            搜索
-                        </button>
-                    </div>
+    <form class="form-horizontal" style="width:800px;">
+        <div class="form-group">
+            <div class="col-sm-6">
+                <label class="control-label col-lg-4 col-sm-4">开始时间</label>
+                <div class="col-lg-8 col-sm-8">
+                    <input type="text" placeholder="" id="test1" class="form-control">
                 </div>
             </div>
-        </form>
-    </div>
+            <div class="col-sm-6">
+                <label class="control-label col-lg-4 col-sm-4">结束时间</label>
+                <div class="col-lg-8 col-sm-8">
+                    <input type="text" placeholder="" id="test2" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-2 col-sm-2">选择周</label>
+            <div class="col-lg-5 col-sm-5">
+                <input type="text" placeholder="" id="test3" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-lg-2 col-sm-2">选择日期</label>
+            <div class="col-lg-5 col-sm-5">
+                <input type="text" placeholder="" id="test4" class="form-control jdpicker">
+            </div>
+            <div class="col-sm-5 form-control-static">通过加上.jdpicker类进行初始化</div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2 col-sm-2">选择日期</label>
+            <div class="col-lg-5 col-sm-5">
+                <input type="text" placeholder="" id="test5" class="form-control">
+            </div>
+            <div class="col-sm-5 form-control-static">设置最大最小日期</div>
+        </div>
+
+    </form>
+
 </div>
 
 <script src="http://static.tcy365.com/cdn/jquery/1.11.1/jquery.js"></script>
@@ -84,8 +75,9 @@ require(['jdpicker'], function () {
     var time2 = $('#test2').jdPicker({
     		date_format: "yyyy-MM-dd",
     		time_start: "11:00:00",
-    		timeShow: 1,
-    		timeBtn: 1
+    		timeShow: 0,
+    		timeBtn: 1,
+            clearBtn: 0
     	});
 
     $('#test3').jdPicker({
@@ -96,6 +88,18 @@ require(['jdpicker'], function () {
     	date_min: "19/05/2010",
     	date_max: "21/12/2012"
     });
+
+    var time5 = $('#test5').jdPicker({
+        date_format: "yyyy-MM-dd",
+        select_week: 0,
+        show_week: 0,
+        date_min: "02/12/2017",
+        date_max: "21/12/2017"
+    });
+
+    setTimeout(function(){
+        $('#time5').val('05/12/2017 00:00:00');
+    },2000)
 });
 </script>
 </body>
