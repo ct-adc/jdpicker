@@ -652,13 +652,13 @@ jdPicker = (function ($) {
                     top: this.input.outerHeight(),
                     left:'initial',
                     right: 0
-                }).addClass('right');
+                }).addClass('right').removeClass('left');
             }else{
                 this.rootLayers.css({
                     top: this.input.outerHeight(),
                     right:'initial',
                     left: 0
-                }).removeClass('right');
+                }).removeClass('right').addClass('left');
             }
             if (this.ieframe) {
                 this.ieframe.css({
