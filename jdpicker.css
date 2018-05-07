@@ -6,7 +6,7 @@
     position: absolute;
     top: 100%;
     left: initial;
-    z-index: 1000;
+    z-index: 2000;
     display: none;
     float: left;
     padding: 15px 15px;
